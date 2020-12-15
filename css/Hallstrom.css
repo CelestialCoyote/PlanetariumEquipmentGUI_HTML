@@ -1,0 +1,821 @@
+/* Updated 14Dec20. */
+
+/**************************************************************************************************
+*
+* CSS for NavBar and all Tabs.
+*
+**************************************************************************************************/
+
+/*************
+* Bootstrap Nav-Tab styling.
+*************/
+
+.navbar .navbar-brand {
+    color: darkorange;
+    margin-right: 1.0em;
+}
+
+.navbar .navbar-nav .nav-item {
+    width: 6.0em;
+    height: 4.0em;
+    text-align: center;
+}
+
+.navbar .navbar-nav .nav-item .active {
+    color: lightgreen;
+    border: 2px solid lightgreen;
+}
+
+.navbar .navbar-nav .nav-link:hover {
+    color: darkgreen;
+}
+
+.navbar .navbar-nav .nav-link {
+    color: crimson;
+    border: 2px solid crimson;
+}
+
+
+/*************
+* Base styling.
+*************/
+
+html {
+    position: fixed;                            /* Should keep GUI from shifting around on tablet. */
+    width: 100%;                                /* Use full width of browser window. */
+    height: 100%;                               /* Use full height of browser window. */
+}
+
+body {
+    background: black;                          /* Set entire background to black. */
+}
+
+.tab-pane{
+    margin: 0.5em;                              /* Leave a little space between tabs and edge of browser window. */
+}
+
+
+/*************
+* Common item styling.
+*************/
+
+.labelText {
+    color: red;
+}
+
+.guiButton {
+    width: 100%;
+    font-family: Droid Sans Mono, monospace;
+    font-size: 1.0em;
+    border-radius: 0.75em;
+    border: 2px solid red;
+	color: darkorange;
+    background-color: black;
+    margin: 0.5em;
+}
+
+.guiButton:focus {
+    outline: none;                              /* Turns off outline when selected. */
+}
+
+.controlTextLarge {
+    color: darkorange;
+    font-family: Trebuchet MS, Arial, sans-serif;
+    font-size: 1.5em;
+    width: 5.0em;
+}
+
+.controlText {
+    color: darkorange;
+    font-family: Trebuchet MS, Arial, sans-serif;
+    font-size: 1.0em;
+}
+
+
+/*************
+* Auto/ Man button styling.
+*************/
+
+.autoManButton {
+    width: 5.0em;
+    font-family: Droid Sans Mono, monospace;
+    font-size: 1.0em;
+    border-radius: 0.75em;
+    border: 2px solid red;
+    background-color: black;
+    margin: 0.5em;
+}
+
+.autoManButton:focus {
+    outline: none;                              /* Turns off outline when selected. */
+}
+
+#autoButton {
+	color: lightgreen;
+}
+
+#manButton {
+	color: crimson;
+}
+
+
+/*************
+* All vertical jQuery sliders.
+*************/
+
+.v-slider.ui-slider {
+    height: 100%;                               /* Sets slider height to fill div container. */
+    outline: none;                              /* Turns off outline when selected. */
+    background: black;                          /* Turns off default fill color. */
+    border-radius: 0.25em;                      /* Rounds corners of slider track. */
+    border: 1px solid orange;                   /* Set default color of slider track to orange. */
+    margin: 1.0em;                              /* Keep slider from shaking when moving and adds space on top and bottom. */
+}
+
+.v-slider .ui-slider-handle {
+    width: 3.0em;                               /* Sets handle width. */
+    height: 2.0em;                              /* Sets handle height. */
+    outline: none;                              /* Turns off outline when selected. */
+    background: black;                          /* Turns off default fill color. */
+    border-radius: 20%;                         /* Rounds corners of handle. */
+    border: 1px solid orange;                   /* Set default color of handle to orange. */
+    cursor: pointer;
+    left: 50%;                                  /* Needed to align slider handle to the left. */
+    margin-left: -1.5em;                        /* Should be minus half handle width to center handle left and right. */
+    margin-bottom: -1.0em;                      /* Should be minus half handle height to keep from running past top end. */
+}
+
+.v-slider .ui-slider-range {
+    background: black;                          /* Set default color of slider range to black. */
+}
+
+
+/****************************
+*  Custom radio button styling.
+****************************/
+
+input[type=radio] {
+    display: none;                              /* Hide standard round radio button. */
+}
+
+input[type=radio] + label {
+    width: 4.75em;                               /* Set width of button. */
+    color: red;                                 /* Set text color when not selected. */
+    border: 2px solid red;                      /* Set border width, style, and color. */
+    padding: 0.5em 0.0em;                             /* Add space around text (top/ bottom, left/ right). */
+    margin-left: 0.15em;
+    margin-right: 0.15em;
+}
+
+input[type=radio]:checked + label { 
+    color: green;                               /* Set text color when selected. */
+    border: 2px solid green;                    /* Set border width, style, and color. */
+}
+
+
+/*************
+*  Custom checkbox styling.
+*************/
+
+.guiCheckbox input {
+    opacity: 0;                                 /* Hide the default checkbox. */
+}
+
+.guiCheckbox {
+    position: relative;
+    padding-right: 0.75em;                      /* Center the checkbox with vertical slider. */
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: -0.15em;                               /* Position checkbox vertically in container space. */
+    left: 0;                                    /* Position checkbox horizontally in container space. */
+    height: 1.75em;                             /* Set height of checkbox. */
+    width: 1.75em;                              /* Set width of checkbox. */
+    border: solid 2px crimson;                  /* Set unchecked color of checkbox. */
+    border-radius: 0.5em;                       /* Set corner radius of checkbox. */
+}
+
+.guiCheckbox input:checked ~ .checkmark {
+     border: solid 2px green;                   /* Change checkbox border to when checked. */
+}
+
+.checkmark:after {
+    position: absolute;
+    display: none;                              /* Create the checkmark/indicator (hidden when not checked) */
+    content: "";                                /* Needed to make checkmark visible when checked. */
+}
+
+.guiCheckbox input:checked ~ .checkmark:after {
+    display: block;                             /* Show the checkmark when checked */
+}
+
+.guiCheckbox .checkmark:after {
+    top: 0.1em;                                 /* Position rectangle/ checkmark vertically in checkbox. */
+    left: 0.5em;                                /* Position rectangle/ checkmark horizontally in checkbox. */
+    height: 1.0em;                              /* Set height of rectangle/ checkmark. */
+    width: 0.5em;                               /* Set width of rectangle/ checkmark. */
+    transform: rotate(45deg);                   /* Rotates rectangle used to create checkmark. */
+    border: solid green;                        /* Set color of rectangle/ checkmark. */                        
+    border-width: 0 2px 2px 0;                  /* Hide the sides of the rectangle not needed. Creates the actual checkmark. */
+}
+
+
+
+
+/**************************************************************************************************
+*
+* CSS for RGB Control Tab.
+*
+**************************************************************************************************/
+
+#rgbCoveControl {
+    height: 75vh;                               /* Set section to 75% of viewport height. */
+}
+
+#rgbCoveSliderControl,
+#rgbCoveButtonControl,
+#rgbCoveStrobeEffects {
+    width: 100%;
+    border: 2px solid crimson;                  /* Border around sections.  */
+    border-radius: 1.0em;                       /* Border radius. */
+}
+
+#presetButtons,
+#rgbStrobeButtons {
+    border-top: 2px solid crimson;
+}
+
+#rgbSliderGroup {
+    height: 80%;                                /* Sets R, G, ,and B slider height to 80% of container. */
+}
+
+#rgbMasterSliderGroup {                         /* Sets RGB Master slider height to 20% of container. */
+    height: 20%;
+}
+
+
+/*************
+* RGBW vertical jQuery sliders.
+*************/
+
+#REDCOVE {
+    border: 1px solid red;
+}
+
+#REDCOVE .ui-slider-handle {
+    border: 1px solid red;
+}
+
+#REDCOVE .ui-slider-range {
+    background: #550000;
+}
+
+#GRNCOVE {
+    border: 1px solid green;
+}
+
+#GRNCOVE .ui-slider-handle {
+    border: 1px solid green;
+}
+
+#GRNCOVE .ui-slider-range {
+    background: #004400;
+}
+
+#BLUCOVE {
+    border: 1px solid dodgerblue;
+}
+
+#BLUCOVE .ui-slider-handle {
+    border: 1px solid dodgerblue;
+}
+
+#BLUCOVE .ui-slider-range {
+    background: #004444;
+}
+
+
+/*************
+* RGB Master jquery slider.
+*************/
+
+#RGBCOVE {
+    width: 100%;
+    outline: none;
+    background: black;
+    border: 1px solid goldenrod;
+}
+
+#RGBCOVE .ui-slider-handle {
+    width: 2.0em;                               /* Sets handle width. */
+    height: 3.0em;                              /* Sets handle height. */
+    outline: none;                              /* Turns off outline when selected. */
+    background: black;                          /* Turns off default fill color. */
+    border-radius: 20%;                         /* Rounds corners of handle. */
+    cursor: pointer;
+    top: 50%;                                   /* Needed to align slider handle vertically. */
+    margin-top: -1.5em;                         /* Should be minus half the height value. */
+    border: 1px solid goldenrod;
+}
+
+#RGBCOVE .ui-slider-range {
+    background: #444400;
+}
+
+#lblRGBCOVEMaster,
+#lblRGBCOVE {
+    width: 6.0em;
+    text-align: center;
+}
+
+
+
+
+/**************************************************************************************************
+*
+* CSS for FX1 Control Tab.
+*
+**************************************************************************************************/
+
+#rgbFX1Control {
+    height: 75vh;
+}
+
+#rgbFX1SliderControl,
+#fx1Control {
+    width: 100%;
+    border: 2px solid crimson;                  /* Border around sections.  */
+    border-radius: 1.0em;                       /* Border radius. */
+}
+
+.fxSlider{
+    height: 100%;
+}
+
+#rgbFX1SliderGroup {
+    height: 75%;                                /* Sets R, G, ,and B slider height to 80% of container. */
+}
+
+#rgbFX1MasterSliderGroup {                      /* Sets RGB Master slider height to 20% of container. */
+    height: 20%;
+}
+
+
+/*************
+* FX vertical jquery sliders.
+*************/
+
+#RFX1 {
+    border: 1px solid red;
+}
+
+#RFX1 .ui-slider-handle {
+    border: 1px solid red;
+}
+
+#RFX1 .ui-slider-range {
+    background: #550000;
+}
+
+#GFX1 {
+    border: 1px solid green;
+}
+
+#GFX1 .ui-slider-handle {
+    border: 1px solid green;
+}
+
+#GFX1 .ui-slider-range {
+    background: #004400;
+}
+
+#BFX1 {
+    border: 1px solid dodgerblue;
+}
+
+#BFX1 .ui-slider-handle {
+    border: 1px solid dodgerblue;
+}
+
+#BFX1 .ui-slider-range {
+    background: #004444;
+}
+
+
+/*************
+* FX Master jquery slider.
+*************/
+
+#RGBFX1 {
+    width: 100%;
+    outline: none;
+    background: black;
+    border: 1px solid goldenrod;
+}
+
+#RGBFX1 .ui-slider-handle {
+    width: 2.0em;                               /* Sets handle width. */
+    height: 3.0em;                              /* Sets handle height. */
+    outline: none;                              /* Turns off outline when selected. */
+    background: black;                          /* Turns off default fill color. */
+    border-radius: 20%;                         /* Rounds corners of handle. */
+    cursor: pointer;
+    top: 50%;                                   /* Needed to align slider handle vertically. */
+    margin-top: -1.5em;                         /* Should be minus half the height value. */
+    border: 1px solid goldenrod;
+}
+
+#RGBFX1 .ui-slider-range {
+    background: #444400;
+}
+
+#lblRGBFX1Master,
+#lblRGBFX1 {
+    width: 6.0em;
+    text-align: center;
+}
+
+
+/*************
+* FX Speed jquery slider.
+*************/
+
+#fX1BulbsOn,
+#fX1BulbsOff,
+#fX1Speed,
+#fx1BulbEnableStart,
+#fx1BulbEnableEnd,
+#fx1BulbDisableStart,
+#fx1BulbDisableEnd,
+#fX1ChasePattern {
+    width: 100%;
+    outline: none;
+    background: black;
+    border: 1px solid goldenrod;
+}
+
+#fX1BulbsOn .ui-slider-handle,
+#fX1BulbsOff .ui-slider-handle,
+#fX1Speed .ui-slider-handle,
+#fx1BulbEnableStart .ui-slider-handle,
+#fx1BulbEnableEnd .ui-slider-handle,
+#fx1BulbDisableStart .ui-slider-handle,
+#fx1BulbDisableEnd .ui-slider-handle,
+#fX1ChasePattern .ui-slider-handle {
+    width: 1.5em;                               /* Sets handle width. */
+    height: 3.0em;                              /* Sets handle height. */
+    outline: none;                              /* Turns off outline when selected. */
+    background: black;                          /* Turns off default fill color. */
+    border-radius: 20%;                         /* Rounds corners of handle. */
+    cursor: pointer;
+    top: 50%;                                   /* Needed to align slider handle vertically. */
+    margin-top: -1.5em;                         /* Should be minus half the height value. */
+    border: 1px solid goldenrod;
+}
+
+#fX1BulbsOn .ui-slider-range,
+#fX1BulbsOff .ui-slider-range,
+#fX1Speed .ui-slider-range,
+#fx1BulbEnableStart .ui-slider-range,
+#fx1BulbEnableEnd .ui-slider-range, 
+#fx1BulbDisableStart .ui-slider-range,
+#fx1BulbDisableEnd .ui-slider-range,
+#fX1ChasePattern .ui-slider-range{
+    background: #444400;
+}
+
+
+/*************
+* FX Settings.
+*************/
+
+.dropdown,
+.dropdown:focus {
+    -webkit-appearance: none;
+    outline: none;
+    background: black;
+    border: 1px solid goldenrod;
+    font-family: Droid Sans Mono, monospace;
+    color: darkorange;
+    height: 2.0em;
+}
+
+.dropdown:hover {
+    color: orangered;
+}
+
+.phButton {
+    width: 35%;
+    font-family: Droid Sans Mono, monospace;
+    font-size: 1.0em;
+    border-radius: 0.75em;
+    border: 2px solid red;
+	color: darkorange;
+    background-color: black;
+    margin: 0.5em;
+}
+
+.phButton:focus {
+    outline: none;                              /* Turns off outline when selected. */
+}
+
+
+
+
+/**************************************************************************************************
+*
+* CSS for White Cove Control Tab.
+*
+**************************************************************************************************/
+
+#whiteCoveControl {
+    height: 75vh;                               /* Set section to 75% of viewport height. */
+}
+
+#whiteCoveSlider,
+#whiteCoveButtons,
+#whiteCoveStrobe,
+#whiteZoneSelect {
+    width: 100%;
+    border: 2px solid crimson;                  /* Border around sections.  */
+    border-radius: 1.0em;                       /* Border radius. */
+}
+
+#whiteStrobeFireControl {
+    border-top: 2px solid crimson;
+}
+
+#WHTCOVE {
+    border: 1px solid grey;
+}
+
+#WHTCOVE .ui-slider-handle {
+    border: 1px solid grey;
+}
+
+#WHTCOVE .ui-slider-range {
+    background: #333333;
+}
+
+#whiteCoveSlider {
+    height: 100%
+}
+
+
+
+
+/**************************************************************************************************
+*
+* CSS for Quick Chase Tab.
+*
+**************************************************************************************************/
+
+#fxQuickChase {
+    height: 75vh;                               /* Set section to 75% of viewport height. */
+}
+
+#fx1QuickChaseButtonControl,
+#fx2QuickChaseButtonControl,
+#fx3QuickChaseButtonControl {
+    height: 100%;
+    border: 2px solid crimson;
+    border-radius: 1.0em;
+}
+
+
+
+
+/**************************************************************************************************
+*
+* CSS For Star Machine Elevator, Lamps, and Shutters Tab.
+*
+**************************************************************************************************/
+
+#elevatorControl,
+#starsTwilightMoonGroup,
+#solarSystemGroup,
+#gridsMarkersConstellationsGroup {
+    height: 75vh;
+    border: 2px solid crimson;
+    border-radius: 10px;
+}
+
+#moonPhaseControl {
+    margin-top: 2.0em;
+}
+
+
+/*************
+*  Toggle Lamp for lamps.
+*************/
+
+.toggleLampCbx {
+    display: none;                              /* Hides standard checkbox. */
+}
+
+.toggleLamp {
+    -webkit-user-select: none;                  /* Include for Chrome and Safari browsers. */
+    position: relative;
+    width: 6.0em;                               /* Sets overall width of toggle switch. */
+    padding: 0.5em;
+}
+
+.toggleLampLabel {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid red;                      /* Sets outside border color. */
+    border-radius:  2.5em;                      /* Sets outside border radius. */
+}
+
+.toggleLampInner {
+    display: block;
+    width:  200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+
+.toggleLampInner:before,
+.toggleLampInner:after {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 2.0em;                              /* Sets overall height of toggle switch. */
+    padding: 0.0em;
+    line-height: 2.0em;                         /* Sets line height for label inside of toggle switch. */
+    font-size: 0.8em;                           /* Sets font size for label inside of toggle switch. */
+    font-family: Trebuchet, Arial, sans-serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.toggleLampInner:before {
+    content: "ON";                              /* Sets text when switch is "ON". */
+    padding-left: 0.0em;                        /* Sets horizontal position of text inside of toggle switch. */
+    background-color: black;                    /* Sets "ON" background color. */
+    color: green;                               /* Sets "ON" text color. */
+}
+
+.toggleLampInner:after {
+    content: "OFF";                             /* Sets text when switch is "OFF". */
+    padding-right: 0.5em;                       /* Sets horizontal position of text inside of toggle switch. */
+    background-color: black;                    /* Sets "OFF" background color. */
+    color: red;                                 /* Sets "OFF" text color. */
+    text-align: right;                          /* Aligns text when switch is "OFF". */
+}
+
+.toggleLampSwitch {
+    display: block;
+    width: 1.25em;                              /* Sets width of movable switch. */
+    margin: 0.75em;                             /* Sets gap of movable switch within border. */
+    background: black;                          /* Sets color of the movable switch. */
+    position: absolute;
+    top: 0.0em;
+    bottom: 0.5em;
+    right: 3.25em;                              /* Sets distance switch moves when activated. */
+    border: 2px solid red;                      /* Sets border properties of movable switch. */
+    border-radius: 2.0em;                       /* Sets radius of movable switch corners. */
+    transition: all 0.3s ease-in 0s; 
+}
+
+.toggleLampCbx:checked + .toggleLampLabel .toggleLampInner {
+    margin-left: 0.0em;
+}
+
+.toggleLampCbx:checked + .toggleLampLabel .toggleLampSwitch {
+    right: 0.0em; 
+}
+
+
+/*************
+*  Toggle Switch for shutters.
+*************/
+
+.toggleSwitchInner {
+    display: block;
+    width:  200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+
+.toggleSwitchInner:before,
+.toggleSwitchInner:after {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 2.0em;                              /* Sets overall height of toggle switch. */
+    padding: 0.0em;
+    line-height: 2.0em;                         /* Sets line height for label inside of toggle switch. */
+    font-size: 0.8em;                           /* Sets font size for label inside of toggle switch. */
+    font-family: Trebuchet, Arial, sans-serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.toggleSwitchInner:before {
+    content: "OPEN";                             /* Sets text when switch is "ON". */
+    padding-left: 0.0em;                        /* Sets horizontal position of text inside of toggle switch. */
+    background-color: black;                    /* Sets "ON" background color. */
+    color: green;                               /* Sets "ON" text color. */
+}
+
+.toggleSwitchInner:after {
+    content: "CLOSE";                            /* Sets text when switch is "OFF". */
+    padding-right: 0.5em;                       /* Sets horizontal position of text inside of toggle switch. */
+    background-color: black;                    /* Sets "OFF" background color. */
+    color: red;                                 /* Sets "OFF" text color. */
+    text-align: right;                          /* Aligns text when switch is "OFF". */
+}
+
+.toggleSwitchSwitch {
+    display: block;
+    width: 1.25em;                              /* Sets width of movable switch. */
+    margin: 0.75em;                             /* Sets gap of movable switch within border. */
+    background: black;                          /* Sets color of the movable switch. */
+    position: absolute;
+    top: 0.0em;
+    bottom: 0.5em;
+    right: 3.25em;                              /* Sets distance switch moves when activated. */
+    border: 2px solid red;                      /* Sets border properties of movable switch. */
+    border-radius: 2.0em;                       /* Sets radius of movable switch corners. */
+    transition: all 0.3s ease-in 0s; 
+}
+
+.toggleLampCbx:checked + .toggleLampLabel .toggleSwitchInner {
+    margin-left: 0.0em;
+}
+
+.toggleLampCbx:checked + .toggleLampLabel .toggleSwitchSwitch {
+    right: 0.0em; 
+}
+
+
+
+
+/**************************************************************************************************
+*
+* CSS for Star Machine Motions Tab.
+*
+**************************************************************************************************/
+
+#dailyPresetPositions,
+#motionsGroup {
+    height: 75vh;
+    border: 2px solid crimson;
+    border-radius: 10px;
+}
+
+#dailyPositionButtons {
+    height: 65vh;
+}
+
+#motionSliders {
+    height: 100%;
+}
+
+.motionTextLarge {
+    color: darkorange;
+    font-family: Trebuchet MS, Arial, sans-serif;
+    font-size: 1.5em;
+    width: 5.0em;
+}
+
+.motionText {
+    color: darkorange;
+    font-family: Trebuchet MS, Arial, sans-serif;
+    font-size: 1.0em;
+}
+
+.motionButton {
+    width: 100%;
+    height: 2.5em;
+    font-family: Lucida, monospace;
+    font-size: 1.0em;
+    border-radius: 0.75em;
+    border: 2px solid red;
+	color: darkorange;
+    background-color: black;
+    margin: 0.5em;
+}
+
+.motionButton:focus {
+    outline: none;                              /* Turns off outline when selected. */
+}
+
+
+
+
+/**************************************************************************************************
+*
+* CSS For Hercules Remote Tab.
+*
+**************************************************************************************************/
+
+#remoteCommands,
+#herculesShowListGroup {
+    height: 75vh;
+    border: 2px solid crimson;
+    border-radius: 1.0em;
+}

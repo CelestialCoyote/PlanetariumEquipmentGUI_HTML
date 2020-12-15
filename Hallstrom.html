@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<!-- Version date: 14Dec20 -->
+<!-- For use with Hercules 4.0 RS-232 only -->
+
+<html lang="en"><!-- html -->
+    
+<head><!-- head -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    <!-- jQuery-UI 1.12.1 and jQuery 3.3.1 -->
+    <link rel="stylesheet" type="text/css" href="css/ExternalCSS/jquery-ui.min-1.12.1.css">
+    <script src="js/ExternalJS/jquery-3.3.1.min.js"></script>
+    <script src="js/ExternalJS/jquery-ui.min-1.12.1.js"></script>
+    <script src="js/ExternalJS/jquery.ui.touch-punch.min.js"></script>
+    
+    <!-- Bootstrap 4.0 -->
+    <link rel="stylesheet" type="text/css" href="css/ExternalCSS/bootstrap.min-4.0.0.css">
+    <script src="js/ExternalJS/bootstrap-4.0.0.min.js"></script>
+    
+    <!-- Custom CSS and Javascript -->
+    <link rel="stylesheet" type="text/css" href="css/Hallstrom.css">
+    <script src="js/Hallstrom.js"></script>
+    <script src="js/Hallstrom_UserChangeable.js"></script>
+    
+    <!-- Chrome tab title -->
+    <title>Hallstrom Control</title>
+
+</head><!-- /head -->
+
+
+<body><!-- body -->
+    
+    <div id="mainContainter"><!-- mainContainer -->
+        
+        <nav id="navigation" class="navbar navbar-expand-sm justify-content-between"><!-- navBar -->
+            
+            <a class="navbar-brand" href="#">Hallstrom<br>Planetarium</a><!-- Brand/logo -->
+  
+            <ul class="navbar-nav nav"><!-- navBarLinks -->
+                
+                <li class="nav-item mt-2 mb-2"><!-- rgbCoveNavTab -->
+                    <a href="#rgbCoveTab" class="nav-link active" data-toggle="tab" role="tab">RGB<br>Cove</a>
+                </li><!-- /rgbCoveNavTab -->
+                
+                <li class="nav-item mt-2 mb-2"><!-- rgbFX1NavTab -->
+                    <a href="#rgbFX1Tab" class="nav-link" data-toggle="tab" role="tab">RGB<br>FX1</a>
+                </li><!-- /rgbFX1NavTab -->
+                
+                <li class="nav-item mt-2 mb-2"><!-- fxQuickChaseTab -->
+                    <a href="#fxQuickChaseTab" class="nav-link" data-toggle="tab" role="tab">Quick<br>Chase</a>
+                </li><!-- /fxQuickChaseTab -->
+                
+                <li class="nav-item mt-2 mb-2"><!-- whiteCoveNavTab -->
+                    <a href="#whiteCoveTab" class="nav-link" data-toggle="tab" role="tab">White<br>Cove</a>
+                </li><!-- /whiteCoveNavTab -->
+                
+                <li class="nav-item mt-2 mb-2"><!-- starMachineElevatorLampsTab -->
+                    <a href="#starMachineElevatorLampsTab" class="nav-link" data-toggle="tab">Elev & 512 Lamps</a>
+                </li><!-- /starMachineElevatorLampsTab -->
+                
+                <li class="nav-item mt-2 mb-2"><!-- starMachineMotionsTab -->
+                    <a href="#starMachineMotionsTab" class="nav-link" data-toggle="tab">512 Motions</a>
+                </li><!-- /starMachineMotionsTab -->
+                
+                <li class="nav-item mt-2 mb-2"><!-- herculesRemoteControlTab -->
+                    <a href="#herculesRemoteControlTab" class="nav-link" data-toggle="tab">Remote Control</a>
+                </li><!-- /herculesRemoteControlTab -->
+            
+            </ul><!-- /navBarLinks -->
+            
+            <div id="autoManButtonGroup" class="d-flex flex-row"><!-- autoManButtonGroup -->
+                <button id="autoButton" class="autoManButton">Auto Sys</button>
+                <button id="manButton" class="autoManButton">Man Sys</button>
+            </div><!-- /autoManButtonGroup -->
+            
+        </nav><!-- /navBar -->
+        
+        
+        <div id="all-tabs" class="tab-content"><!-- all-tabs -->
+            
+            <div id="rgbCoveTab" class="tab-pane fade show active" role="tabpanel"><!-- rgbCoveTab -->
+                
+                <div id="rgbCoveControl" class="d-flex flex-row justify-content-around"><!-- rgbCoveControl -->
+                    
+                    <div id="rgbCoveSliderControl" class="col-5 d-flex flex-column"><!-- rgbCoveSliderControl -->
+
+                        <div id="rgbSliderGroup" class="d-flex flex-row justify-content-around"><!-- rgbCoveSliderGroup -->
+
+                            <div class="d-flex flex-column align-items-center"><!-- redCoveSlider -->
+                                <label class="text-center labelText">Red:</label>
+                                
+                                <div id="REDCOVE" class="v-slider"></div>
+                                
+                                <output id="lblREDCOVE" class="labelText mt-2" for="REDCOVE">0</output>
+                            </div><!-- /redCoveSlider -->
+
+                            <div class="d-flex flex-column align-items-center"><!-- grnCoveSlider -->
+                                <label class="text-center labelText">Green:</label>
+                                
+                                <div id="GRNCOVE" class="v-slider"></div>
+                                
+                                <output id="lblGRNCOVE" class="labelText mt-2" for="GRNCOVE">0</output>
+                            </div><!-- /grnCoveSlider -->
+
+                            <div class="d-flex flex-column align-items-center"><!-- bluCoveSlider -->
+                                <label class="text-center labelText">Blue:</label>
+                                
+                                <div id="BLUCOVE" class="v-slider"></div>
+                                
+                                <output id="lblBLUCOVE" class="labelText mt-2" for="BLUCOVE">0</output>
+                            </div><!-- /bluCoveSlider -->
+
+                        </div><!-- /rgbCoveSliderGroup -->
+
+                        <div id="rgbMasterSliderGroup" class="d-flex flex-row align-items-center"><!-- rgbMasterSliderGroup -->
+                            <label id="lblRGBCOVEMaster" class="labelText mt-1 mr-3">Master</label>
+
+                            <div id="RGBCOVE"></div>
+                            
+                            <output id="lblRGBCOVE" class="labelText ml-3" for="RGBCOVE">100</output>
+                        </div><!-- rgbMasterSliderGroup -->
+
+                    </div><!-- rgbCoveSliderControl -->
+                    
+                    <div id="rgbCoveButtonControl" class="col-4 d-flex flex-column justify-content-around"><!-- rgbCoveButtonControl -->
+
+                        <div id="rgbCoveButtons" class="d-flex flex-column justify-content-around"><!-- /rgbCoveButtons -->
+                            <label class="text-center labelText mb-2">RGB Fade Buttons:</label>
+
+                            <div class="d-flex justify-content-between"><!-- redCoveButtons -->
+                                <button id="redCoveOn" type="button" class="guiButton"></button>
+                                <button id="redCoveOff" type="button" class="guiButton"></button>
+                            </div><!-- /redCoveButtons -->
+
+                            <div class="d-flex justify-content-between"><!-- grnCoveButtons -->
+                                <button id="grnCoveOn" type="button" class="guiButton"></button>
+                                <button id="grnCoveOff" type="button" class="guiButton"></button>
+                            </div><!-- /grnCoveButtons -->
+
+                            <div class="d-flex justify-content-between"><!-- bluCoveButtons -->
+                                <button id="bluCoveOn" type="button" class="guiButton"></button>
+                                <button id="bluCoveOff" type="button" class="guiButton"></button>
+                            </div><!-- /bluCoveButtons -->
+
+                            <div class="d-flex justify-content-between mt-4"><!-- rgbCoveButtons -->
+                                <button id="rgbCoveOn" type="button" class="guiButton"></button>
+                                <button id="rgbCoveOff" type="button" class="guiButton"></button>
+                            </div><!-- rgbCoveButtons -->
+                            
+                            <div class="d-flex justify-content-between"><!-- rgbCoveLongButtons -->
+                                <button id="rgbCoveOnLong" type="button" class="guiButton"></button>
+                                <button id="rgbCoveOffLong" type="button" class="guiButton"></button>
+                            </div><!-- /rgbCoveLongButtons -->
+
+                        </div><!-- /rgbCoveButtons -->
+
+                        <div id="presetButtons" class="d-flex flex-column justify-content-around"><!-- presetButtons -->
+
+                            <label class="text-center labelText mt-2 mb-2">Preset Cove Levels:</label>
+                            
+                            <div class="d-flex flex-row mb-2"><!-- presetButtonPair01 -->
+                                <button id="presetOn01" class="guiButton"></button>
+                                <button id="presetOff01" class="guiButton"></button>
+                            </div><!-- /presetButtonPair01 -->
+
+                            <div class="d-flex flex-row mb-2"><!-- presetButtonPair02 -->
+                                <button id="presetOn02" class="guiButton"></button>
+                                <button id="presetOff02" class="guiButton"></button>
+                            </div><!-- /presetButtonPair02 -->
+
+                            <div class="d-flex flex-row mb-2"><!-- presetButtonPair03 -->
+                                <button id="presetOn03" class="guiButton"></button>
+                                <button id="presetOff03" class="guiButton"></button>
+                            </div><!-- /presetButtonPair03 -->
+
+                        </div><!-- /presetButtons -->
+                    
+                    </div><!-- /rgbCoveButtonControl -->
+                    
+                    <div id="rgbCoveStrobeEffects" class="col-3 d-flex flex-column align-items-center justify-content-around"><!-- rgbCoveStrobeEffects -->
+                        
+                        <div id="strobeFadeDuration" class="d-flex flex-column"><!-- strobeFadeDuration -->
+                            <label class="text-center labelText mb-4">RGB Strobe Fade Time</label><!-- /rgbCoveStrobeEffectsLabel -->
+                            
+                            <div class="d-flex flex-row mb-2"><!-- strobeButtonPair01 -->
+                                <input id="strobeFade01" type="radio" name="selectRGBStrobeFadeDuration" checked>
+                                    <label id="stobeFade01Label" class="text-center" for="strobeFade01"></label>
+                                <input id="strobeFade02" type="radio" name="selectRGBStrobeFadeDuration">
+                                    <label id="stobeFade02Label" class="text-center" for="strobeFade02"></label>
+                            </div><!-- /presetButtonPair01 -->
+                            
+                            <div class="d-flex flex-row mb-2"><!-- strobeButtonPair02 -->
+                                <input id="strobeFade03" type="radio" name="selectRGBStrobeFadeDuration">
+                                    <label id="stobeFade03Label" class="text-center" for="strobeFade03"></label>
+                                <input id="strobeFade04" type="radio" name="selectRGBStrobeFadeDuration">
+                                    <label id="stobeFade04Label" class="text-center" for="strobeFade04"></label>
+                            </div><!-- /presetButtonPair02 -->
+                            
+                            <div class="d-flex flex-row mb-2"><!-- strobeButtonPair03 -->
+                                <input id="strobeFade05" type="radio" name="selectRGBStrobeFadeDuration">
+                                    <label id="stobeFade05Label" class="text-center" for="strobeFade05"></label>
+                                <input id="strobeFade06" type="radio" name="selectRGBStrobeFadeDuration">
+                                    <label id="stobeFade06Label" class="text-center" for="strobeFade06"></label>
+                            </div><!-- /presetButtonPair03 -->
+                            
+                            <div class="d-flex flex-row mb-2"><!-- strobeButtonPair04 -->
+                                <input id="strobeFade07" type="radio" name="selectRGBStrobeFadeDuration">
+                                    <label id="stobeFade07Label" class="text-center" for="strobeFade07"></label>
+                                <input id="strobeFade08" type="radio" name="selectRGBStrobeFadeDuration">
+                                    <label id="stobeFade08Label" class="text-center" for="strobeFade08"></label>
+                            </div><!-- /presetButtonPair04 -->
+                        </div><!-- /strobeFadeDuration -->
+                        
+                        <div id="rgbStrobeButtons" class="d-flex flex-column justify-content-around"><!-- rgbStrobeButtons -->
+                            
+                            <label class="text-center labelText mt-2 mb-2">RGB Strobe Control:</label>
+                            
+                            <button id="strobeRed" class="guiButton">Red Strobe</button>
+                            <button id="strobeGrn" class="guiButton">Grn Strobe</button>
+                            <button id="strobeBlu" class="guiButton">Blu Strobe</button>
+                            <button id="strobeRGB" class="guiButton">RGB Strobe</button>
+                        </div><!-- /rgbStrobeButtons -->
+                    
+                    </div><!-- /rgbCoveStrobeEffects -->
+                    
+                </div><!-- /rgbCoveControl -->    
+            
+            </div><!-- /rgbCoveTab -->
+            
+            
+            
+            <div id="rgbFX1Tab" class="tab-pane" role="tabpanel"><!-- rgbFX1Tab -->
+                
+                <div id="rgbFX1Control" class="d-flex flex-row justify-content-around"><!-- rgbFX1Control -->
+
+                    <div id="rgbFX1SliderControl" class="col-4 d-flex flex-column"><!-- rgbFX1SliderControl -->
+
+                        <div id="rgbFX1SliderGroup" class="d-flex flex-row justify-content-around mb-4"><!-- rgbFX1SliderGroup -->
+
+                            <div class="d-flex flex-column align-items-center"><!-- rfx1Slider -->
+                                <button id="rfx1On" type="button" class="guiButton"></button>
+                                
+                                <div class="d-flex flex-column align-items-center fxSlider">
+                                    <label class="labelText">RFX1:</label>
+                                    <div id="RFX1" class="v-slider"></div>
+                                    <output id="lblRFX1" class="labelText mt-2" for="RFX1">0</output>
+                                </div>
+                                
+                                <button id="rfx1Off" type="button" class="guiButton"></button>
+                            </div><!-- /rfx1Slider -->
+
+                            <div class="d-flex flex-column align-items-center"><!-- gfx1Slider -->
+                                <button id="gfx1On" type="button" class="guiButton"></button>
+                                <div class="d-flex flex-column align-items-center fxSlider">
+                                    <label class="labelText">GFX1:</label>
+                                    <div id="GFX1" class="v-slider"></div>
+                                    <output id="lblGFX1" class="labelText mt-2" for="GFX1">0</output>
+                                </div>
+                                
+                                <button id="gfx1Off" type="button" class="guiButton"></button>
+                            </div><!-- /gfx1Slider -->
+
+                            <div class="d-flex flex-column align-items-center"><!-- bfx1Slider -->
+                                <button id="bfx1On" type="button" class="guiButton"></button>
+                                
+                                <div class="d-flex flex-column align-items-center fxSlider">
+                                    <label class="labelText">BFX1:</label>
+                                    <div id="BFX1" class="v-slider"></div>
+                                    <output id="lblBFX1" class="labelText mt-2" for="BFX1">0</output>
+                                </div>
+                                    
+                                <button id="bfx1Off" type="button" class="guiButton"></button>
+                            </div><!-- /bfx1Slider -->
+
+                        </div><!-- /rgbFX1SliderGroup -->
+
+                        <div class="d-flex flex-column justify-content-around">
+                            <div id="rgbFX1MasterSliderGroup" class="d-flex flex-row align-items-center mt-2 mb-2"><!-- rgbFX1MasterSliderGroup -->
+                                <label id="lblRGBFX1Master" class="labelText mt-1 mr-3">Master</label>
+
+                                <div id="RGBFX1"></div>
+
+                                <output id="lblRGBFX1" class="labelText ml-3" for="RGBFX1">100</output>
+                            </div><!-- rgbFX1MasterSliderGroup -->
+                            
+                            <div class="d-flex flex-row justify-content-between"><!-- rgbFX1Buttons -->
+                                <button id="rgbFX1On" type="button" class="guiButton"></button>
+                                <button id="rgbFX1Off" type="button" class="guiButton"></button>
+                            </div><!-- rgbFX1Buttons -->
+                        </div>
+
+                    </div><!-- rgbFX1SliderControl -->
+                    
+                    <div id="fx1Control" class="col-8 d-flex flex-column justify-content-around"><!-- fx1Control -->
+                        
+                        <div id="fx1DeviceControl" class="form-inline justify-content-between"><!-- fx1DeviceControl -->
+                            <label class="controlText">Device Select</label><!-- /fx1-control-label -->
+                            <input id="selectRGBFX1" type="radio" name="fx1DeviceSelect" value="RGBFX1" checked>
+                                <label for="selectRGBFX1">RGBFX1</label>
+                            <input id="selectRFX1" type="radio" name="fx1DeviceSelect" value="RFX1">
+                                <label for="selectRFX1">RFX1</label>
+                            <input id="selectGFX1" type="radio" name="fx1DeviceSelect" value="GFX1">
+                                <label for="selectGFX1">GFX1</label>
+                            <input id="selectBFX1" type="radio" name="fx1DeviceSelect" value="BFX1">
+                                <label for="selectBFX1">BFX1</label>
+                        </div><!-- /fx1DeviceControl -->
+                        
+                        <div class="form-inline justify-content-between"><!-- fx1BulpPattern -->
+                            <label class="col-1 labelText mr-2">Bulbs On</label>
+                            <div id="fX1BulbsOn" class="col-2"></div>
+                            <output id="lblFX1BulbsOn" class="col-1 text-center labelText" for="fX1BulbsOn">1</output>
+                            
+                            <label class="col-1 labelText mr-2">Bulbs Off</label>
+                            <div id="fX1BulbsOff" class="col-2"></div>
+                            <output id="lblFX1BulbsOff" class="col-1 text-center labelText" for="fX1BulbsOff">3</output>
+                            
+                            <button id="fx1BulbPatternSet" type="button" class="col-2 guiButton">Set</button>
+                        </div><!-- /fx1BulbPattern -->
+                        
+                        <div class="form-inline justify-content-between"><!-- fx1SpeedControl -->
+                            <label class="col-2 labelText">Chase Speed</label>
+
+                            <div id="fX1Speed" class="col-6"></div>
+                            
+                            <output id="lblFX1Speed" class="col-1 text-center labelText" for="fX1Speed">5</output>
+                            
+                            <button id="fx1SpeedSet" type="button" class="col-2 guiButton">Set</button>
+                        </div><!-- /fx1SpeedControl -->
+
+                        <div class="form-inline justify-content-between"><!-- fx1BulbEnable -->
+                            <label class="col-1 labelText mr-3">Enable Start</label>
+                            <div id="fx1BulbEnableStart" class="col-2"></div>
+                            <output id="lblFX1BulbEnableStart" class="col-1 text-center labelText" for="fx1BulbEnableStart">1</output>
+                            
+                            <label class="col-1 labelText mr-3">Enable End</label>
+                            <div id="fx1BulbEnableEnd" class="col-2"></div>
+                            <output id="lblFX1BulbEnableEnd" class="col-1 text-center labelText" for="fx1BulbEnableEnd">64</output>
+                            
+                            <button id="fx1BulbEnableSet" type="button" class="col-2 guiButton">Set</button>
+                        </div><!-- /fx1BulbEnable -->
+                        
+                        <div class="form-inline justify-content-between"><!-- fx1BulbDisable -->
+                            <label class="col-1 labelText mr-3">Disable Start</label>
+                            <div id="fx1BulbDisableStart" class="col-2"></div>
+                            <output id="lblFX1BulbDisableStart" class="col-1 text-center labelText" for="fx1BulbDisableStart">0</output>
+                            
+                            <label class="col-1 labelText mr-3">Disable End</label>
+                            <div id="fx1BulbDisableEnd" class="col-2"></div>
+                            <output id="lblFX1BulbDisableEnd" class="col-1 text-center labelText" for="fx1BulbDisableEnd">0</output>
+                            
+                            <button id="fx1BulbDisableSet" type="button" class="col-2 guiButton">Set</button>
+                        </div><!-- /fx1BulbDisable -->
+
+                        <div class="form-inline justify-content-between"><!-- fx1Chase -->
+                            <label class="col-2 labelText" for="fx1ChasePattern">Chase Pattern</label>
+                            
+                            <div id="fX1ChasePattern" class="col-2"></div>
+                            <output id="lblFX1ChasePattern" class="col-1 text-center labelText" for="fX1ChasePattern">0</output>
+                            <label id="lblFX1ChasePatternText" class="col-4 labelText">Stop Chase</label>
+                            
+                            <button id="fx1ChaseSet" type="button" class="col-2 guiButton">Set</button>
+                        </div><!-- /fx1Chase -->
+                        
+                        <div class="form-inline justify-content-around"><!-- fx1Buttons -->
+                            <button id="fx1Initialize" type="button" class="col-2 guiButton">Init</button>
+                            
+                            <button id="fx1ProjectorHome" type="button" class="col-2 guiButton">PH</button>
+                        </div><!-- /fx1Buttons -->
+                        
+                    </div><!-- fx1Control -->
+                    
+                </div><!-- /rgbFX1Control -->    
+            
+            </div> <!-- /rgbFX1Tab -->
+            
+            
+            
+            <div id="fxQuickChaseTab" class="tab-pane" role="tabpanel"><!-- fxQuickChaseTab -->
+                
+                <div id="fxQuickChase" class="d-flex flex-row justify-content-between"><!-- fxQuickChase -->
+                    
+                    <div id="fx1QuickChaseButtonControl" class="col-4 d-flex flex-column justify-content-around"><!-- fx1QuickChaseButtonControl -->
+                        <div class="d-flex justify-content-around align-items-center mb-2"><!-- fx1QuickChaseLabelPH -->
+                            <label class="labelText">FX1 Quick Chase</label><!-- fx1QuickChaseLabel -->
+                            <button id="fx1QuickChasePH" type="button" class="phButton">FX1 PH</button>
+                        </div><!-- /fx1QuickChaseLabelPH -->
+
+                        <div class="d-flex justify-content-between"><!-- fx1QuickChase01Pair -->
+                            <button id="fx1QuickChase01_On" type="button" class="guiButton"></button>
+                            <button id="fx1QuickChase01_Off" type="button" class="guiButton"></button>
+                        </div><!-- /fx1QuickChase01Pair -->
+
+                        <div class="d-flex justify-content-between"><!-- fx1QuickChase02Pair -->
+                            <button id="fx1QuickChase02_On" type="button" class="guiButton"></button>
+                            <button id="fx1QuickChase02_Off" type="button" class="guiButton"></button>
+                        </div><!-- /fx1QuickChase02Pair -->
+
+                        <div class="d-flex justify-content-between"><!-- fx1QuickChase03Pair -->
+                            <button id="fx1QuickChase03_On" type="button" class="guiButton"></button>
+                            <button id="fx1QuickChase03_Off" type="button" class="guiButton"></button>
+                        </div><!-- /fx1QuickChase03Pair -->
+
+                        <div class="d-flex justify-content-between"><!-- fx1QuickChase04Pair -->
+                            <button id="fx1QuickChase04_On" type="button" class="guiButton"></button>
+                            <button id="fx1QuickChase04_Off" type="button" class="guiButton"></button>
+                        </div><!-- /fx1QuickChase04Pair -->
+                        
+                        <div class="d-flex justify-content-between"><!-- fx1QuickChase05Pair -->
+                            <button id="fx1QuickChase05_On" type="button" class="guiButton"></button>
+                            <button id="fx1QuickChase05_Off" type="button" class="guiButton"></button>
+                        </div><!-- /fx1QuickChase05Pair -->
+
+                        <div class="d-flex justify-content-between"><!-- fx1QuickChase06Pair -->
+                            <button id="fx1QuickChase06_On" type="button" class="guiButton"></button>
+                            <button id="fx1QuickChase06_Off" type="button" class="guiButton"></button>
+                        </div><!-- /fx1QuickChase06Pair -->
+                        
+                        <div class="d-flex justify-content-between"><!-- fx1QuickChase07Pair -->
+                            <button id="fx1QuickChase07_On" type="button" class="guiButton"></button>
+                            <button id="fx1QuickChase07_Off" type="button" class="guiButton"></button>
+                        </div><!-- /fx1QuickChase07Pair -->
+
+                    </div><!-- fx1QuickChaseButtonControl -->
+                    
+                    <div id="fx2QuickChaseButtonControl" class="col-4 d-flex flex-column justify-content-around"><!-- fx2QuickChaseButtonControl -->
+                        <div class="d-flex justify-content-around align-items-center mb-2"><!-- fx2QuickChaseLabelPH -->
+                            <label class="labelText">FX2 Quick Chase</label><!-- fx2QuickChaseLabel -->
+                            <button id="fx2QuickChasePH" type="button" class="phButton">FX2 PH</button>
+                        </div><!-- /fx2QuickChaseLabelPH -->
+
+                        <div class="d-flex justify-content-between"><!-- fx2QuickChase01Pair -->
+                            <button id="fx2QuickChase01_On" type="button" class="guiButton"></button>
+                            <button id="fx2QuickChase01_Off" type="button" class="guiButton"></button>
+                        </div><!-- /fx2QuickChase01Pair -->
+
+                        <div class="d-flex justify-content-between"><!-- fx2QuickChase02Pair -->
+                            <button id="fx2QuickChase02_On" type="button" class="guiButton"></button>
+                            <button id="fx2QuickChase02_Off" type="button" class="guiButton"></button>
+                        </div><!-- /fx2QuickChase02Pair -->
+
+                        <div class="d-flex justify-content-between"><!-- fx2QuickChase03Pair -->
+                            <button id="fx2QuickChase03_On" type="button" class="guiButton"></button>
+                            <button id="fx2QuickChase03_Off" type="button" class="guiButton"></button>
+                        </div><!-- /fx2QuickChase03Pair -->
+
+                        <div class="d-flex justify-content-between"><!-- fx2QuickChase04Pair -->
+                            <button id="fx2QuickChase04_On" type="button" class="guiButton"></button>
+                            <button id="fx2QuickChase04_Off" type="button" class="guiButton"></button>
+                        </div><!-- /fx2QuickChase04Pair -->
+                        
+                        <div class="d-flex justify-content-between"><!-- fx2QuickChase05Pair -->
+                            <button id="fx2QuickChase05_On" type="button" class="guiButton"></button>
+                            <button id="fx2QuickChase05_Off" type="button" class="guiButton"></button>
+                        </div><!-- /fx2QuickChase05Pair -->
+
+                        <div class="d-flex justify-content-between"><!-- fx2QuickChase06Pair -->
+                            <button id="fx2QuickChase06_On" type="button" class="guiButton"></button>
+                            <button id="fx2QuickChase06_Off" type="button" class="guiButton"></button>
+                        </div><!-- /fx2QuickChase06Pair -->
+                        
+                        <div class="d-flex justify-content-between"><!-- fx2QuickChase07Pair -->
+                            <button id="fx2QuickChase07_On" type="button" class="guiButton"></button>
+                            <button id="fx2QuickChase07_Off" type="button" class="guiButton"></button>
+                        </div><!-- /fx2QuickChase07Pair -->
+
+                    </div><!-- fx2QuickChaseButtonControl -->
+                    
+                    <div id="fx3QuickChaseButtonControl" class="col-4 d-flex flex-column justify-content-around"><!-- fx3QuickChaseButtonControl -->
+                        <div class="d-flex justify-content-around align-items-center mb-2"><!-- fx3QuickChaseLabelPH -->
+                            <label class="labelText">FX3 Quick Chase</label><!-- fx3QuickChaseLabel -->
+                            <button id="fx3QuickChasePH" type="button" class="phButton">FX3 PH</button>
+                        </div><!-- /fx3QuickChaseLabelPH -->
+
+                        <div class="d-flex justify-content-between"><!-- fx3QuickChase01Pair -->
+                            <button id="fx3QuickChase01_On" type="button" class="guiButton"></button>
+                            <button id="fx3QuickChase01_Off" type="button" class="guiButton"></button>
+                        </div><!-- /fx3QuickChase01Pair -->
+
+                        <div class="d-flex justify-content-between"><!-- fx3QuickChase02Pair -->
+                            <button id="fx3QuickChase02_On" type="button" class="guiButton"></button>
+                            <button id="fx3QuickChase02_Off" type="button" class="guiButton"></button>
+                        </div><!-- /fx3QuickChase02Pair -->
+
+                        <div class="d-flex justify-content-between"><!-- fx3QuickChase03Pair -->
+                            <button id="fx3QuickChase03_On" type="button" class="guiButton"></button>
+                            <button id="fx3QuickChase03_Off" type="button" class="guiButton"></button>
+                        </div><!-- /fx3QuickChase03Pair -->
+
+                        <div class="d-flex justify-content-between"><!-- fx3QuickChase04Pair -->
+                            <button id="fx3QuickChase04_On" type="button" class="guiButton"></button>
+                            <button id="fx3QuickChase04_Off" type="button" class="guiButton"></button>
+                        </div><!-- /fx3QuickChase04Pair -->
+                        
+                        <div class="d-flex justify-content-between"><!-- fx3QuickChase05Pair -->
+                            <button id="fx3QuickChase05_On" type="button" class="guiButton"></button>
+                            <button id="fx3QuickChase05_Off" type="button" class="guiButton"></button>
+                        </div><!-- /fx2QuickChase05Pair -->
+
+                        <div class="d-flex justify-content-between"><!-- fx3QuickChase06Pair -->
+                            <button id="fx3QuickChase06_On" type="button" class="guiButton"></button>
+                            <button id="fx3QuickChase06_Off" type="button" class="guiButton"></button>
+                        </div><!-- /fx3QuickChase06Pair -->
+                        
+                        <div class="d-flex justify-content-between"><!-- fx3QuickChase07Pair -->
+                            <button id="fx3QuickChase07_On" type="button" class="guiButton"></button>
+                            <button id="fx3QuickChase07_Off" type="button" class="guiButton"></button>
+                        </div><!-- /fx3QuickChase07Pair -->
+
+                    </div><!-- fx3QuickChaseButtonControl -->
+                    
+                </div><!-- /fxQuickChase -->
+                
+            </div><!-- /fxQuickChaseTab -->
+            
+            
+            
+            <div id="whiteCoveTab" class="tab-pane" role="tabpanel"><!-- whiteCoveTab -->
+                
+                <div id="whiteCoveControl" class="d-flex flex-row justify-content-around"><!-- whiteCoveControl -->
+                    
+                    <div id="whiteCoveSlider" class="col-2 d-flex flex-column align-items-center"><!-- whiteCoveSlider -->
+                        <label class="text-center labelText">White:</label>
+
+                        <div id="WHTCOVE" class="v-slider"></div>
+
+                        <output id="lblWHTCOVE" class="labelText mt-2" for="WHTCOVE">0</output>
+                    </div><!-- /whiteCoveSlider -->
+                    
+                    
+                    <div id="whiteCoveFadeStrobe" class="col-4 d-flex flex-column justify-content-between"><!-- whiteCoveFadeStrobe -->
+                        
+                        <div id="whiteCoveButtons" class="d-flex flex-column justify-content-around"><!-- whiteCoveButtonControl -->
+
+                            <label class="text-center labelText">White Fade Buttons:</label>
+
+                            <div class="d-flex justify-content-between"><!-- whiteCoveButtons -->
+                                <button id="whtCoveOn" type="button" class="guiButton"></button>
+                                <button id="whtCoveOff" type="button" class="guiButton"></button>
+                            </div><!-- /whiteCoveButtons -->
+                            
+                            <div class="d-flex justify-content-between"><!-- whiteCovePercentageButtons -->
+                                <button id="whtCovePercentage01" type="button" class="guiButton"></button>
+                                <button id="whtCovePercentage02" type="button" class="guiButton"></button>
+                            </div><!-- /whiteCovePercentageButtons -->
+
+                            <div class="d-flex justify-content-between"><!-- whiteCoveLongButtons -->
+                                <button id="whtCoveOnLong" type="button" class="guiButton"></button>
+                                <button id="whtCoveOffLong" type="button" class="guiButton"></button>
+                            </div><!-- /whiteCoveLongButtons -->                    
+                    
+                        </div><!-- /whiteCoveButtonControl -->
+                        
+                        <div id="whiteCoveStrobe" class="d-flex flex-column align-items-center justify-content-between"><!-- whiteCoveStrobe -->
+                            
+                            <label class="text-center labelText mb-2">White Strobe Control:</label>
+                            
+                            <div id="whiteStrobeFadeDuration" class="d-flex flex-column align-items-center"><!-- whiteStrobeFadeDuration -->
+                                <div class="d-flex flex-row mb-2"><!-- whiteStrobeButtonPair01 -->
+                                    <input id="whiteStrobeFade01" type="radio" name="selectWhiteStrobeFadeDuration" checked>
+                                        <label id="whiteStobeFade01Label" class="text-center" for="whiteStrobeFade01"></label>
+                                    <input id="whiteStrobeFade02" type="radio" name="selectWhiteStrobeFadeDuration">
+                                        <label id="whiteStobeFade02Label" class="text-center" for="whiteStrobeFade02"></label>
+                                </div><!-- /whiteStrobeButtonPair01 -->
+
+                                <div class="d-flex flex-row mb-2"><!-- whiteStrobeButtonPair02 -->
+                                    <input id="whiteStrobeFade03" type="radio" name="selectWhiteStrobeFadeDuration">
+                                        <label id="whiteStobeFade03Label" class="text-center" for="whiteStrobeFade03"></label>
+                                    <input id="whiteStrobeFade04" type="radio" name="selectWhiteStrobeFadeDuration">
+                                        <label id="whiteStobeFade04Label" class="text-center" for="whiteStrobeFade04"></label>
+                                </div><!-- /whiteStrobeButtonPair02 -->
+
+                                <div class="d-flex flex-row mb-2"><!-- whiteStrobeButtonPair03 -->
+                                    <input id="whiteStrobeFade05" type="radio" name="selectWhiteStrobeFadeDuration">
+                                        <label id="whiteStobeFade05Label" class="text-center" for="whiteStrobeFade05"></label>
+                                    <input id="whiteStrobeFade06" type="radio" name="selectWhiteStrobeFadeDuration">
+                                        <label id="whiteStobeFade06Label" class="text-center" for="whiteStrobeFade06"></label>
+                                </div><!-- /whiteStrobeButtonPair03 -->
+
+                                <div class="d-flex flex-row mb-2"><!-- whiteStrobeButtonPair04 -->
+                                    <input id="whiteStrobeFade07" type="radio" name="selectWhiteStrobeFadeDuration">
+                                        <label id="whiteStobeFade07Label" class="text-center" for="whiteStrobeFade07"></label>
+                                    <input id="whiteStrobeFade08" type="radio" name="selectWhiteStrobeFadeDuration">
+                                        <label id="whiteStobeFade08Label" class="text-center" for="whiteStrobeFade08"></label>
+                                </div><!-- /whiteStrobeButtonPair04 -->
+                                
+                            </div><!-- /whiteStrobeFadeDuration -->
+                            
+                            <div id="whiteStrobeFireControl" class="mt-2 mb-2">
+                                <button id="strobeWht" type="button" class="guiButton mt-4">White Strobe</button>
+                            </div>
+                        
+                        </div><!-- /whiteCoveStrobe -->
+                    
+                    </div><!-- /whiteCoveFadeStrobe -->
+                    
+                    <div id="whiteZoneSelect" class="col-3 d-flex flex-column justify-content-around"><!-- whiteZoneSelect -->
+                        <label class="text-center labelText mb-4">White Zone Select</label><!-- /whiteZoneSelectLabel -->
+
+                        <div class="d-flex flex-row justify-content-around"><!-- whiteZonePair01 -->
+                            <label class="controlText">White Zone 1</label>
+                            <label class="guiCheckbox">
+                                    <input type="checkbox" id="cbxWHTZONE1" checked>
+                                    <span class="checkmark"></span>
+                            </label>
+                        </div><!-- /whiteZonePair01 -->
+                        
+                        <div class="d-flex flex-row justify-content-around"><!-- whiteZonePair02 -->
+                            <label class="controlText">White Zone 2</label>
+                            <label class="guiCheckbox">
+                                    <input type="checkbox" id="cbxWHTZONE2" checked>
+                                    <span class="checkmark"></span>
+                            </label>
+                        </div><!-- /whiteZonePair02 -->
+                        
+                        <div class="d-flex flex-row justify-content-around"><!-- whiteZonePair03 -->
+                            <label class="controlText">White Zone 3</label>
+                            <label class="guiCheckbox">
+                                    <input type="checkbox" id="cbxWHTZONE3" checked>
+                                    <span class="checkmark"></span>
+                            </label>
+                        </div><!-- /whiteZonePair03 -->
+                        
+                        <div class="d-flex flex-row justify-content-around"><!-- whiteZonePair04 -->
+                            <label class="controlText">White Zone 4</label>
+                            <label class="guiCheckbox">
+                                    <input type="checkbox" id="cbxWHTZONE4" checked>
+                                    <span class="checkmark"></span>
+                            </label>
+                        </div><!-- /whiteZonePair04 -->
+                        
+                        <div class="d-flex flex-row justify-content-around"><!-- whiteZonePair05 -->
+                            <label class="controlText">White Zone 5</label>
+                            <label class="guiCheckbox">
+                                    <input type="checkbox" id="cbxWHTZONE5" checked>
+                                    <span class="checkmark"></span>
+                            </label>
+                        </div><!-- /whiteZonePair05 -->
+                        
+                        <div class="d-flex flex-row justify-content-around"><!-- whiteZonePair06 -->
+                            <label class="controlText">White Zone 6</label>
+                            <label class="guiCheckbox">
+                                    <input type="checkbox" id="cbxWHTZONE6" checked>
+                                    <span class="checkmark"></span>
+                            </label>
+                        </div><!-- /whiteZonePair06 -->
+                        
+                        <div class="d-flex flex-row justify-content-around"><!-- whiteZonePair07 -->
+                            <label class="controlText">White Zone 7</label>
+                            <label class="guiCheckbox">
+                                    <input type="checkbox" id="cbxWHTZONE7" checked>
+                                    <span class="checkmark"></span>
+                            </label>
+                        </div><!-- /whiteZonePair07 -->
+                        
+                        <div class="d-flex flex-row justify-content-around"><!-- whiteZonePair08 -->
+                            <label class="controlText">White Zone 8</label>
+                            <label class="guiCheckbox">
+                                    <input type="checkbox" id="cbxWHTZONE8" checked>
+                                    <span class="checkmark"></span>
+                            </label>
+                        </div><!-- /whiteZonePair08 -->
+
+                    </div><!-- /whiteZoneSelect -->
+                    
+                </div><!-- /whiteCoveControl -->
+            
+            </div><!-- /whiteCoveTab -->
+            
+            
+            
+            <div id="starMachineElevatorLampsTab" class="tab-pane" role="tabpanel"><!-- starMachineElevatorLampsTab  -->
+                
+                <div id="starMachineElevatorLampGroup" class="d-flex flex-row justify-content-around"><!-- starMachineElevatorLampGroup -->
+                    
+                    <div id="elevatorControl" class="col-2 d-flex flex-column"><!-- elevatorControl -->
+                        <label class="text-center labelText">Elevator Control</label><!-- elevatorControlLabel -->
+
+                        <div class="d-flex flex-column align-items-center mt-2">
+                            <button id="elevatorUp" class="guiButton">Up</button>
+                            <button id="elevatorStow" class="guiButton">Stow</button>
+                            <button id="elevatorDown" class="guiButton">Down</button>
+                            <button id="elevatorOff" class="guiButton">Off</button>
+                            <button id="elevatorLat90" class="guiButton">Lat 90</button>
+                        </div>
+
+                    </div><!-- /elevatorControl -->
+                    
+                    <div id="starsTwilightMoonGroup" class="col-3 d-flex flex-column"><!-- starsTwilightMoonGroup -->
+                        
+                        <label class="labelText text-center">Stars, Twilight & Moon</label><!-- /starsTwilightMoonGroupLabel -->
+                        
+                        <div class="d-flex flex-column align-items-center mb-2"><!-- starsLamp -->
+                            <label class="text-center controlTextLarge">Stars</label><!-- /starsLampLabel -->
+
+                            <div class="toggleLamp"><!-- starsLampToggle -->
+                                <input type="checkbox" class="toggleLampCbx" id="toggleStars">
+                                <label class="toggleLampLabel" for="toggleStars">
+                                    <span class="toggleLampInner"></span>
+                                    <span class="toggleLampSwitch"></span>
+                                </label>
+                            </div><!-- /starsLampToggle -->
+                        </div><!-- starsLamp -->
+
+                        <div class="d-flex flex-column"><!-- twilightMoonGroup -->
+
+                            <div class="d-flex flex-row justify-content-between"><!-- twilightLamps -->
+
+                                <div class="d-flex flex-column align-items-center"><!-- twilight01Lamp -->
+                                    <label class="text-center controlText">Twilight 1</label><!-- /twilight01LampLabel -->
+
+                                    <div class="toggleLamp"><!-- twilight01LampToggle -->
+                                        <input type="checkbox" name="toggleLamp" class="toggleLampCbx" id="toggleTwi1">
+                                        <label class="toggleLampLabel" for="toggleTwi1">
+                                            <span class="toggleLampInner"></span>
+                                            <span class="toggleLampSwitch"></span>
+                                        </label>
+                                    </div><!-- /twilight01LampToggle -->
+                                </div><!-- twilight01Lamp -->
+
+                                <div class="d-flex flex-column align-items-center"><!-- twilight2Lamp -->
+                                    <label class="text-center controlText">Twilight 2</label><!-- /twilight2LampLabel -->
+
+                                    <div class="toggleLamp"><!-- twilight2LampToggle -->
+                                        <input type="checkbox" name="toggleLamp" class="toggleLampCbx" id="toggleTwi2">
+                                        <label class="toggleLampLabel" for="toggleTwi2">
+                                            <span class="toggleLampInner"></span>
+                                            <span class="toggleLampSwitch"></span>
+                                        </label>
+                                    </div><!-- /twilight2LampToggle -->
+                                </div><!-- /twilight2Lamp -->
+
+                            </div><!-- twilightLamps -->
+
+                            <div class="d-flex flex-row justify-content-between"><!-- moonLamps -->
+
+                                <div class="d-flex flex-column align-items-center"><!-- moonLamp -->
+                                    <label class="text-center controlText">Moon</label><!-- /moonLampLabel -->
+
+                                    <div class="toggleLamp"><!-- moonLampToggle -->
+                                        <input type="checkbox" name="toggleLamp" class="toggleLampCbx" id="toggleMoon">
+                                        <label class="toggleLampLabel" for="toggleMoon">
+                                            <span class="toggleLampInner"></span>
+                                            <span class="toggleLampSwitch"></span>
+                                        </label>
+                                    </div><!-- /moonLampToggle -->
+                                </div><!-- moonLamp -->
+                                
+                                <div class="d-flex flex-column align-items-center"><!-- moonGlowLamp -->
+                                    <label class="text-center controlText">Moon Glow</label><!-- /moonGlowLampLabel -->
+
+                                    <div class="toggleLamp"><!-- moonGlowLampToggle -->
+                                        <input type="checkbox" name="toggleLamp" class="toggleLampCbx" id="toggleMglo">
+                                        <label class="toggleLampLabel" for="toggleMglo">
+                                            <span class="toggleLampInner"></span>
+                                            <span class="toggleLampSwitch"></span>
+                                        </label>
+                                    </div><!-- /moonGlowLampToggle -->
+                                </div><!-- moonGlowLamp -->
+
+                            </div><!-- /moonLamps -->
+                            
+                            <div id="moonPhaseControl" class="d-flex flex-column align-items-center"><!-- moonPhaseControl -->
+                                <label class="text-center controlText mb-4">Moon Phase Control</label><!-- /moonPhaseControlLabel -->
+
+                                <div id="moonPhaseMotionControl" class="d-flex flex-row"><!-- moonPhaseMotionControl -->
+                                    <input id="mnphsam" type="radio" name="moonPhaseMotion" checked>
+                                        <label class="text-center" for="mnphsam">Annual</label>
+                                    <input id="mnphsoff" type="radio" name="moonPhaseMotion">
+                                        <label class="text-center" for="mnphsoff">Stop</label>
+                                    <input id="mnphson" type="radio" name="moonPhaseMotion">
+                                        <label class="text-center" for="mnphson">Run</label>
+                                </div><!-- /moonPhaseMotionControl -->
+                            </div><!-- /moonPhaseControl -->
+
+                        </div><!-- /twilightMoonGroup -->
+
+                    </div><!-- /starsTwilightMoonGroup -->
+                    
+                    <div id="solarSystemGroup" class="col-3 d-flex flex-column"><!-- solarSystemGroup -->
+                        <label class="labelText text-center">Solar System</label><!-- /solarSystemGroupLabel -->
+                        
+                        <div class="d-flex flex-column align-items-center mt-2 mb-4"><!-- solarSystemLamp -->
+                            <label class="text-center controlText">Solar System Lamp</label><!-- /solarSystemLampLabel -->
+
+                            <div class="toggleLamp"><!-- solarSystemLampToggle -->
+                                <input type="checkbox" name="toggleLamp" class="toggleLampCbx" id="toggleSol">
+                                <label class="toggleLampLabel" for="toggleSol">
+                                    <span class="toggleLampInner"></span>
+                                    <span class="toggleLampSwitch"></span>
+                                </label>
+                            </div><!-- /solarSystemLampToggle -->
+                        </div><!-- solarSystemLamp -->
+                        
+                        <div class="d-flex flex-column"><!-- solarSystemShutterGroup -->
+                            
+                            <div class="d-flex flex-row justify-content-between"><!-- solarSystemShutters01 -->
+                                
+                                <div class="d-flex flex-column align-items-center"><!-- sunShutter -->
+                                    <label class="text-center controlText">Sun Shutter</label><!-- /sunShutterLabel -->
+
+                                    <div class="toggleLamp"><!-- sunShutterToggle -->
+                                        <input type="checkbox" name="toggleLamp" class="toggleLampCbx" id="toggleSunShut">
+                                        <label class="toggleLampLabel" for="toggleSunShut">
+                                            <span class="toggleSwitchInner"></span>
+                                            <span class="toggleSwitchSwitch"></span>
+                                        </label>
+                                    </div><!-- /sunShutterToggle -->
+                                </div><!-- sunShutter -->
+
+                                <div class="d-flex flex-column align-items-center"><!-- mercuryShutter -->
+                                    <label class="text-center controlText">Mercury Shutter</label><!-- /mercuryShutterLabel -->
+
+                                    <div class="toggleLamp"><!-- mercuryShutterToggle -->
+                                        <input type="checkbox" name="toggleLamp" class="toggleLampCbx" id="toggleMercuryShut">
+                                        <label class="toggleLampLabel" for="toggleMercuryShut">
+                                            <span class="toggleSwitchInner"></span>
+                                            <span class="toggleSwitchSwitch"></span>
+                                        </label>
+                                    </div><!-- /mercuryShutterToggle -->
+                                </div><!-- mercuryShutter -->
+
+                            </div><!-- /solarSystemShutters01 -->
+
+                            <div class="d-flex flex-row justify-content-between"><!-- solarSystemShutters02 -->
+
+                                <div class="d-flex flex-column align-items-center"><!-- venusShutter -->
+                                    <label class="text-center controlText">Venus Shutter</label><!-- /venusShutterLabel -->
+
+                                    <div class="toggleLamp"><!-- venusShutterToggle -->
+                                        <input type="checkbox" name="toggleLamp" class="toggleLampCbx" id="toggleVenusShut">
+                                        <label class="toggleLampLabel" for="toggleVenusShut">
+                                            <span class="toggleSwitchInner"></span>
+                                            <span class="toggleSwitchSwitch"></span>
+                                        </label>
+                                    </div><!-- /venusShutterToggle -->
+                                </div><!-- venusShutter -->
+
+                                <div class="d-flex flex-column align-items-center"><!-- marsShutter -->
+                                    <label class="text-center controlText">Mars Shutter</label><!-- /marsShutterLabel -->
+
+                                    <div class="toggleLamp"><!-- marsShutterToggle -->
+                                        <input type="checkbox" name="toggleLamp" class="toggleLampCbx" id="toggleMarsShut">
+                                        <label class="toggleLampLabel" for="toggleMarsShut">
+                                            <span class="toggleSwitchInner"></span>
+                                            <span class="toggleSwitchSwitch"></span>
+                                        </label>
+                                    </div><!-- /marsShutterToggle -->
+                                </div><!-- marsShutter -->
+
+                            </div><!-- /solarSystemShutters02 -->
+
+                            <div class="d-flex flex-row justify-content-between"><!-- solarSystemShutters03 -->
+
+                                <div class="d-flex flex-column align-items-center"><!-- jupiterShutter -->
+                                    <label class="text-center controlText">Jupiter Shutter</label><!-- /jupiterShutterLabel -->
+
+                                    <div class="toggleLamp"><!-- jupiterShutterToggle -->
+                                        <input type="checkbox" name="toggleLamp" class="toggleLampCbx" id="toggleJupiterShut">
+                                        <label class="toggleLampLabel" for="toggleJupiterShut">
+                                            <span class="toggleSwitchInner"></span>
+                                            <span class="toggleSwitchSwitch"></span>
+                                        </label>
+                                    </div><!-- /jupiterShutterToggle -->
+                                </div><!-- jupiterShutter -->
+
+                                <div class="d-flex flex-column align-items-center"><!-- saturnShutter -->
+                                    <label class="text-center controlText">Saturn Shutter</label><!-- /saturnShutterLabel -->
+
+                                    <div class="toggleLamp"><!-- saturnShutterToggle -->
+                                        <input type="checkbox" name="toggleLamp" class="toggleLampCbx" id="toggleSaturnShut">
+                                        <label class="toggleLampLabel" for="toggleSaturnShut">
+                                            <span class="toggleSwitchInner"></span>
+                                            <span class="toggleSwitchSwitch"></span>
+                                        </label>
+                                    </div><!-- /saturnShutterToggle -->
+                                </div><!-- saturnShutter -->
+
+                            </div><!-- solarSystemShutters03 -->
+                            
+                        </div><!-- /solarSystemShutterGroup -->
+                        
+                    </div><!-- /solarSystemGroup -->
+                    
+                    <div id="gridsMarkersConstellationsGroup" class="col-4 d-flex flex-column"><!-- gridsMarkersConstellationsGroup -->
+                        
+                        <div id="gridsMarkersGroup" class="d-flex flex-column"><!-- gridsMarkersGroup -->
+                            <label class="text-center labelText">Grids & Markers</label><!-- /gridsMarkersGroupLabel -->
+
+                            <div class="d-flex flex-column"><!-- gridsMarkersToggleGroup -->
+
+                                <div class="d-flex flex-row justify-content-between"><!-- gridsMarkers01 -->
+
+                                    <div class="d-flex flex-column align-items-center"><!-- meridianLamp -->
+                                        <label class="text-center controlText">Meridian</label><!-- /meridianLabel -->
+
+                                        <div class="toggleLamp"><!-- meridianLampToggle -->
+                                            <input type="checkbox" name="toggleLamp" class="toggleLampCbx" id="toggleMrdn">
+                                            <label class="toggleLampLabel" for="toggleMrdn">
+                                                <span class="toggleLampInner"></span>
+                                                <span class="toggleLampSwitch"></span>
+                                            </label>
+                                        </div><!-- /meridianLampToggle -->
+                                    </div><!-- /meridianLamp -->
+
+                                    <div class="d-flex flex-column align-items-center"><!-- coordinatesLamp -->
+                                        <label class="text-center controlText">Coord</label><!-- /coordinatesLabel -->
+
+                                        <div class="toggleLamp"><!-- coordinatesLampToggle -->
+                                            <input type="checkbox" name="toggleLamp" class="toggleLampCbx" id="toggleCoor">
+                                            <label class="toggleLampLabel" for="toggleCoor">
+                                                <span class="toggleLampInner"></span>
+                                                <span class="toggleLampSwitch"></span>
+                                            </label>
+                                        </div><!-- /coordinatesLampToggle -->
+                                    </div><!-- /coordinatesLamp -->
+                                    
+                                    <div class="d-flex flex-column align-items-center"><!-- eclipticLamp -->
+                                        <label class="text-center controlText">Ecliptic</label><!-- /eclipticLabel -->
+
+                                        <div class="toggleLamp"><!-- eclipticLampToggle -->
+                                            <input type="checkbox" name="toggleLamp" class="toggleLampCbx" id="toggleEcl">
+                                            <label class="toggleLampLabel" for="toggleEcl">
+                                                <span class="toggleLampInner"></span>
+                                                <span class="toggleLampSwitch"></span>
+                                            </label>
+                                        </div><!-- /eclipticLampToggle -->
+                                    </div><!-- /eclipticLamp -->
+
+                                </div><!-- /gridsMarkers01 -->
+
+                                <div class="d-flex flex-row justify-content-between"><!-- gridsMarker02 -->
+
+                                    <div class="d-flex flex-column align-items-center"><!-- cardinalPointsLamp -->
+                                        <label class="text-center controlText">Card Pts</label><!-- /cardinalPointsLabel -->
+
+                                        <div class="toggleLamp"><!-- cardinal-points-lamp-toggle-switch -->
+                                            <input type="checkbox" name="toggleLamp" class="toggleLampCbx" id="toggleCard">
+                                            <label class="toggleLampLabel" for="toggleCard">
+                                                <span class="toggleLampInner"></span>
+                                                <span class="toggleLampSwitch"></span>
+                                            </label>
+                                        </div><!-- /cardinalPointsLampToggle -->
+                                    </div><!-- /cardinalPointsLamp -->
+                                    
+                                    <div class="d-flex flex-column align-items-center"><!-- homeLatitudeLamp -->
+                                        <label class="text-center controlText">Home Lat</label><!-- /homeLatitudeLabel -->
+
+                                        <div class="toggleLamp"><!-- homeLatitudeLampToggle -->
+                                            <input type="checkbox" name="toggleLamp" class="toggleLampCbx" id="toggleHlat">
+                                            <label class="toggleLampLabel" for="toggleHlat">
+                                                <span class="toggleLampInner"></span>
+                                                <span class="toggleLampSwitch"></span>
+                                            </label>
+                                        </div><!-- /homeLatitudeLampToggle -->
+                                    </div><!-- /homeLatitudeLamp -->
+
+                                    <div class="d-flex flex-column align-items-center"><!-- poleMarkerLamp -->
+                                        <label class="text-center controlText">Pole Mark</label><!-- /poleMarkerLabel -->
+
+                                        <div class="toggleLamp"><!-- poleMarkerLampToggle -->
+                                            <input type="checkbox" name="toggleLamp" class="toggleLampCbx" id="togglePole">
+                                            <label class="toggleLampLabel" for="togglePole">
+                                                <span class="toggleLampInner"></span>
+                                                <span class="toggleLampSwitch"></span>
+                                            </label>
+                                        </div><!-- /poleMarkerLampToggle -->
+                                    </div><!-- /poleMarkerLamp -->
+
+                                </div><!-- /gridsMarker02 -->
+
+                                <div class="d-flex flex-row justify-content-between"><!-- gridsMarkers03 -->
+
+                                    <div class="d-flex flex-column align-items-center"><!-- zenithLamp -->
+                                        <label class="text-center controlText">Zenith</label><!-- /zenithLabel -->
+
+                                        <div class="toggleLamp"><!-- zenithLampToggle -->
+                                            <input type="checkbox" name="toggleLamp" class="toggleLampCbx" id="toggleZen">
+                                            <label class="toggleLampLabel" for="toggleZen">
+                                                <span class="toggleLampInner"></span>
+                                                <span class="toggleLampSwitch"></span>
+                                            </label>
+                                        </div><!-- /zenithLampToggle -->
+                                    </div><!-- /zenithLamp -->
+
+                                    <div class="d-flex flex-column align-items-center"><!-- sateliteLamp -->
+                                        <label class="text-center controlText">Satelite</label><!-- /sateliteLabel -->
+
+                                        <div class="toggleLamp"><!-- sateliteLampToggle -->
+                                            <input type="checkbox" name="toggleLamp" class="toggleLampCbx" id="toggleSat">
+                                            <label class="toggleLampLabel" for="toggleSat">
+                                                <span class="toggleLampInner"></span>
+                                                <span class="toggleLampSwitch"></span>
+                                            </label>
+                                        </div><!-- /sateliteLampToggle -->
+                                    </div><!-- /sateliteLamp -->
+
+                                </div><!-- /gridsMarkers03 -->
+                                
+                            </div><!-- /gridsMarkersToggleGroup -->
+                            
+                        </div><!-- /gridsMarkersGroup -->
+
+                        <div id="constellationGroup" class="d-flex flex-column mt-2"><!-- constellationGroup -->
+                            <label class="text-center labelText">Constellations</label><!-- constellationGroupLabel -->
+                            
+                            <div class="d-flex flex-row justify-content-between"><!-- constellationLamps01 -->
+
+                                <div class="d-flex flex-column align-items-center"><!-- con1Lamp -->
+                                    <label class="text-center controlText">Orion</label><!-- /con1LampLabel -->
+
+                                    <div class="toggleLamp"><!-- con1LampToggle -->
+                                        <input type="checkbox" name="toggleLamp" class="toggleLampCbx" id="toggleCon1">
+                                        <label class="toggleLampLabel" for="toggleCon1">
+                                            <span class="toggleLampInner"></span>
+                                            <span class="toggleLampSwitch"></span>
+                                        </label>
+                                    </div><!-- /con1LampToggle -->
+                                </div><!-- con1Lamp -->
+
+                                <div class="d-flex flex-column align-items-center"><!-- con2Lamp -->
+                                    <label class="text-center controlText">Casseopiea</label><!-- /con2LampLabel -->
+
+                                    <div class="toggleLamp"><!-- con2LampToggle -->
+                                        <input type="checkbox" name="toggleLamp" class="toggleLampCbx" id="toggleCon2">
+                                        <label class="toggleLampLabel" for="toggleCon2">
+                                            <span class="toggleLampInner"></span>
+                                            <span class="toggleLampSwitch"></span>
+                                        </label>
+                                    </div><!-- /con2LampToggle -->
+                                </div><!-- con2Lamp -->
+                                
+                                <div class="d-flex flex-column align-items-center"><!-- con3Lamp -->
+                                    <label class="text-center controlText">Ursa Major</label><!-- /con3LampLabel -->
+
+                                    <div class="toggleLamp"><!-- con1LampToggle -->
+                                        <input type="checkbox" name="toggleLamp" class="toggleLampCbx" id="toggleCon3">
+                                        <label class="toggleLampLabel" for="toggleCon3">
+                                            <span class="toggleLampInner"></span>
+                                            <span class="toggleLampSwitch"></span>
+                                        </label>
+                                    </div><!-- /con3LampToggle -->
+                                </div><!-- con3Lamp -->
+
+
+                            </div><!-- /constellationLamps01 -->
+                            
+                            <div class="d-flex flex-row justify-content-between"><!-- constellationLamps02 -->
+
+                                
+                                <div class="d-flex flex-column align-items-center"><!-- con4Lamp -->
+                                    <label class="text-center controlText">Pegasus</label><!-- /con4LampLabel -->
+
+                                    <div class="toggleLamp"><!-- con4LampToggle -->
+                                        <input type="checkbox" name="toggleLamp" class="toggleLampCbx" id="toggleCon4">
+                                        <label class="toggleLampLabel" for="toggleCon4">
+                                            <span class="toggleLampInner"></span>
+                                            <span class="toggleLampSwitch"></span>
+                                        </label>
+                                    </div><!-- /con4LampToggle -->
+                                </div><!-- con4Lamp -->
+                                
+                                <div class="d-flex flex-column align-items-center"><!-- con5Lamp -->
+                                    <label class="text-center controlText">Leo</label><!-- /con5LampLabel -->
+
+                                    <div class="toggleLamp"><!-- con5LampToggle -->
+                                        <input type="checkbox" name="toggleLamp" class="toggleLampCbx" id="toggleCon5">
+                                        <label class="toggleLampLabel" for="toggleCon5">
+                                            <span class="toggleLampInner"></span>
+                                            <span class="toggleLampSwitch"></span>
+                                        </label>
+                                    </div><!-- /con5LampToggle -->
+                                </div><!-- con5Lamp -->
+                                
+                                <div class="d-flex flex-column align-items-center"><!-- con6Lamp -->
+                                    <label class="text-center controlText">Taurus</label><!-- /con6LampLabel -->
+
+                                    <div class="toggleLamp"><!-- con6LampToggle -->
+                                        <input type="checkbox" name="toggleLamp" class="toggleLampCbx" id="toggleCon6">
+                                        <label class="toggleLampLabel" for="toggleCon6">
+                                            <span class="toggleLampInner"></span>
+                                            <span class="toggleLampSwitch"></span>
+                                        </label>
+                                    </div><!-- /con6LampToggle -->
+                                </div><!-- con6Lamp -->
+
+                            </div><!-- /constellationLamps02 -->
+
+                        </div><!-- /constellationGroup -->
+                        
+                    </div><!-- /gridsMarkersConstellationsGroup -->
+
+                </div><!-- /starMachineElevatorLampGroup -->
+                
+            </div><!-- /starMachineElevatorLampsTab -->
+            
+            
+            
+            <div id="starMachineMotionsTab" class="tab-pane" role="tabpanel"><!-- starMachineMotionsTab  -->
+                
+                <div class="d-flex flex-row align-items-center">
+                
+                    <div id="dailyPresetPositions" class="col-2 d-flex flex-column align-items-center justify-content-between"><!-- dailyPresetPositions -->
+                        
+                        <label class="text-center labelText">Daily Preset Positions</label>
+                        
+                        <div id="dailyPositionButtons" class="d-flex flex-column align-items-center justify-content-between"><!-- dailyPositionButtons -->
+                            <button id="daily00Hours" class="guiButton">Daily = 00 hours</button>
+                            <button id="daily06Hours" class="guiButton">Daily = 06 hours</button>
+                            <button id="daily12Hours" class="guiButton">Daily = 12 hours</button>
+                            <button id="daily18Hours" class="guiButton">Daily = 18 hours</button>
+                        </div><!-- /dailyPositionButtons -->
+
+                    </div><!-- /dailyPresetPositions -->
+
+                    <div id="motionsGroup" class="col-10 d-flex flex-column text-center"><!-- motionsGroup -->
+
+                        <label class="text-center labelText">Star Machine Motion Control</label><!-- /motionsGroupLabel -->
+
+                        <div id=motionSliders class="d-flex flex-row justify-content-around"><!-- motionSliders -->
+
+                            <div class="d-flex flex-column align-items-center"><!-- dailyMotionControl -->
+                                <label class="motionTextLarge">Daily:</label>
+
+                                <label class="guiCheckbox">
+                                    <input type="checkbox" id="cbxDAILY">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <div id="DAILY" class="v-slider motionSlider"></div>
+                                <output id="lblDAILY" class="motionText" for="DAILYMotion">0</output>
+                                <button id="stopDAILY" class="motionButton">Stop</button>
+
+                            </div><!-- /dailyMotionControl -->
+
+                            <div class="d-flex flex-column align-items-center"><!-- latitudeMotionControl -->
+                                <label class="motionTextLarge">Latitude:</label><!-- latitudeLabel -->
+
+                                <label class="guiCheckbox">
+                                    <input type="checkbox" id="cbxLAT">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <div id="LAT" class="v-slider motionSlider"></div>
+                                <output id="lblLAT" class="motionText" for="LATMotion">0</output>
+                                <button id="stopLAT" class="motionButton">Stop</button>
+
+                            </div><!-- /latitudeMotionControl -->
+
+                            <div class="d-flex flex-column align-items-center"><!-- annualMotionControl -->
+                                <label class="motionTextLarge">Annual:</label><!-- annualLabel -->
+
+                                <label class="guiCheckbox">
+                                    <input type="checkbox" id="cbxANN">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <div id="ANN" class="v-slider motionSlider"></div>
+                                <output id="lblANN" class="motionText" for="ANNMotion">0</output>
+                                <button id="stopANN" class="motionButton">Stop</button>
+
+                            </div><!-- /annualMotionControl -->
+
+                            <div class="d-flex flex-column align-items-center"><!-- headingMotionControl -->
+                                <label class="motionTextLarge">Heading:</label><!-- headingLabel -->
+
+                                <label class="guiCheckbox">
+                                    <input type="checkbox" id="cbxHEAD">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <div id="HEAD" class="v-slider motionSlider"></div>
+                                <output id="lblHEAD" class="motionText" for="HEADMotion">0</output>
+                                <button id="stopHEAD" class="motionButton">Stop</button>
+
+                            </div><!-- /headingMotionControl -->
+
+                            <div class="d-flex flex-column align-items-center"><!-- precessionMotionControl -->
+                                <label class="motionTextLarge">Precession:</label><!-- precessionLabel -->
+
+                                <label class="guiCheckbox">
+                                    <input type="checkbox" id="cbxPREC">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <div id="PREC" class="v-slider motionSlider"></div>
+                                <output id="lblPREC" class="motionText" for="PRECMotion">0</output>
+                                <button id="stopPREC" class="motionButton">Stop</button>
+
+                            </div><!-- /precessionMotionControl -->
+
+                        </div><!-- /motionSliders -->
+
+                    </div><!-- /motionsGroup -->
+                    
+                </div>
+                
+            </div><!-- /starMachineMotionsTab -->
+            
+            
+            
+            <div id="herculesRemoteControlTab" class="tab-pane" role="tabpanel"><!-- herculesRemoteControlTab -->
+                
+                <div class="d-flex flex-row justify-content-around"><!-- remoteControlContainer -->
+                    
+                    <div id="remoteCommands" class="col-4 d-flex flex-column justify-content-around"><!-- remoteCommandsList -->
+                        
+                        <label class="text-center labelText">Hercules Remote Commands</label><!-- remoteCommandsListLabel -->
+                        
+                        <div class="d-flex flex-column align-items-center">
+                            <button id="hercFileNew" class="guiButton"></button>
+                            <button id="hercRealTimeMode" class="guiButton"></button>
+                            <button id="hercEditMode" class="guiButton"></button>
+                            <button id="hercFollowMode" class="guiButton"></button>
+                            <button id="hercClockDriveMode" class="guiButton"></button>
+                            <button id="hercStandbyMode" class="guiButton"></button>
+                            <button id="hercNextCue" class="guiButton"></button>
+                            <button id="hercPreviousCue" class="guiButton"></button>
+                        </div>
+                    
+                    </div><!-- /remoteCommandsList -->
+                    
+                    <div id="herculesShowListGroup" class="col-6 d-flex flex-column justify-content-around"><!-- herculesShowListGroup -->
+                        
+                        <label class="text-center labelText">Load Hercules Program</label><!-- herculesShowListLabel -->
+                        
+                        <div id="hercShowList" class="d-flex flex-row justify-content-between"><!-- hercShowList -->
+                        
+                            <div class="d-flex flex-column align-items-center mt-4"><!-- showListColumn01 -->
+                                <button id="hercShow01" class="guiButton"></button>
+                                <button id="hercShow02" class="guiButton"></button>
+                                <button id="hercShow03" class="guiButton"></button>
+                                <button id="hercShow04" class="guiButton"></button>
+                                <button id="hercShow05" class="guiButton"></button>
+                                <button id="hercShow06" class="guiButton"></button>
+                                <button id="hercShow07" class="guiButton"></button>
+                                <button id="hercShow08" class="guiButton"></button>
+                            </div><!-- /showListColumn01 -->
+                            
+                            <div class="d-flex flex-column align-items-center mt-4"><!-- showListColumn02 -->
+                                <button id="hercShow09" class="guiButton"></button>
+                                <button id="hercShow10" class="guiButton"></button>
+                                <button id="hercShow11" class="guiButton"></button>
+                                <button id="hercShow12" class="guiButton"></button>
+                                <button id="hercShow13" class="guiButton"></button>
+                                <button id="hercShow14" class="guiButton"></button>
+                                <button id="hercShow15" class="guiButton"></button>
+                                <button id="hercShow16" class="guiButton"></button>
+                            </div><!-- /showListColumn02 -->
+                            
+                            <div class="d-flex flex-column align-items-center mt-4"><!-- showListColumn03 -->
+                                <button id="hercShow17" class="guiButton"></button>
+                                <button id="hercShow18" class="guiButton"></button>
+                                <button id="hercShow19" class="guiButton"></button>
+                                <button id="hercShow20" class="guiButton"></button>
+                                <button id="hercShow21" class="guiButton"></button>
+                                <button id="hercShow22" class="guiButton"></button>
+                                <button id="hercShow23" class="guiButton"></button>
+                                <button id="hercShow24" class="guiButton"></button>
+                            </div><!-- /showListColumn03 -->
+                        
+                        </div><!-- /hercShowList -->
+                    
+                    </div><!-- /herculesShowListGroup -->
+                
+                </div><!-- /remoteControlContainer -->
+
+            </div><!-- /herculesRemoteControlTab -->
+        
+        </div><!-- /all-tabs -->
+    
+    </div><!-- /mainContainer -->
+
+</body><!-- /body -->
+    
+
+    <!-- Get Preset Button and Cove Fade values prior to loading page. -->
+    <script>onload=setPresetButtonText();</script>
+    <script>onload=setCoveFadeValues();</script>
+    <script>onload=setRGBStrobeFadeValues();</script>
+    <script>onload=setFX1FadeValues();</script>
+    <script>onload=setFXQuickChaseButtonText();</script>
+    <script>onload=setWhiteCoveFadeValues();</script>
+    <script>onload=setWhiteStrobeFadeValues();</script>
+    <script>onload=setMotionCheckboxValues();</script>
+    <script>onload=setHercCommandButtonText();</script>
+    <script>onload=setHercShowButtonText();</script>
+
+
+</html><!-- /html -->
